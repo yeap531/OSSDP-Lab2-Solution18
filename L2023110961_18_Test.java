@@ -106,4 +106,110 @@ public class L2023110961_18_Test {
         int[] expected = {60, 40, 30, 24};
         assertArrayEquals(expected, solution.productExceptSelf(nums));
     }
+
+    /**
+     * 测试目的：验证null输入的异常处理
+     * 测试用例：null
+     * 预期：抛出IllegalArgumentException
+     * 边界值：异常输入
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullInput() {
+        Solution solution = new Solution();
+        solution.productExceptSelf(null);
+    }
+
+    /**
+     * 测试目的：验证空数组的异常处理
+     * 测试用例：[]
+     * 预期：抛出IllegalArgumentException
+     * 边界值：空数组
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyArray() {
+        Solution solution = new Solution();
+        solution.productExceptSelf(new int[]{});
+    }
+
+    /**
+     * 测试目的：验证单元素数组的异常处理
+     * 测试用例：[5]
+     * 预期：抛出IllegalArgumentException
+     * 边界值：长度为1的数组
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testSingleElement() {
+        Solution solution = new Solution();
+        solution.productExceptSelf(new int[]{5});
+    }
+
+    /**
+     * 测试目的：验证零在数组开头的情况
+     * 测试用例：[0, 2, 3]
+     * 预期输出：[6, 0, 0]
+     * 特殊情况：单个0在开头
+     */
+    @Test
+    public void testZeroAtBeginning() {
+        Solution solution = new Solution();
+        int[] nums = {0, 2, 3};
+        int[] expected = {6, 0, 0};
+        assertArrayEquals(expected, solution.productExceptSelf(nums));
+    }
+
+    /**
+     * 测试目的：验证零在数组末尾的情况
+     * 测试用例：[2, 3, 0]
+     * 预期输出：[0, 0, 6]
+     * 特殊情况：单个0在末尾
+     */
+    @Test
+    public void testZeroAtEnd() {
+        Solution solution = new Solution();
+        int[] nums = {2, 3, 0};
+        int[] expected = {0, 0, 6};
+        assertArrayEquals(expected, solution.productExceptSelf(nums));
+    }
+
+    /**
+     * 测试目的：验证奇数个负数的情况
+     * 测试用例：[-2, 3, -4]
+     * 预期输出：[-12, 8, -6]
+     * 等价类：奇数个负数（结果包含负数）
+     */
+    @Test
+    public void testOddNumberOfNegatives() {
+        Solution solution = new Solution();
+        int[] nums = {-2, 3, -4};
+        int[] expected = {-12, 8, -6};
+        assertArrayEquals(expected, solution.productExceptSelf(nums));
+    }
+
+    /**
+     * 测试目的：验证偶数个负数的情况
+     * 测试用例：[-2, -3, 4]
+     * 预期输出：[-12, -8, 6]
+     * 等价类：偶数个负数（部分结果为正）
+     */
+    @Test
+    public void testEvenNumberOfNegatives() {
+        Solution solution = new Solution();
+        int[] nums = {-2, -3, 4};
+        int[] expected = {-12, -8, 6};
+        assertArrayEquals(expected, solution.productExceptSelf(nums));
+    }
+
+    /**
+     * 测试目的：验证包含-1的情况
+     * 测试用例：[-1, 2, -1, 3]
+     * 预期输出：[-6, 3, -6, 2]
+     * 特殊情况：包含-1的混合数组
+     */
+    @Test
+    public void testWithNegativeOne() {
+        Solution solution = new Solution();
+        int[] nums = {-1, 2, -1, 3};
+        int[] expected = {-6, 3, -6, 2};
+        assertArrayEquals(expected, solution.productExceptSelf(nums));
+    }
 }
